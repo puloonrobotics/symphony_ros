@@ -1,0 +1,12 @@
+<launch>
+
+    <!-- Robot namespace -->
+    <arg name="robot_name" default="symphony"/>
+    <arg name="start_delay_seconds" default="0"/>
+
+
+    <!-- Launch the example in that namespace -->
+    <!-- <node name="p_n_p_2" pkg="symphony_pnp" type="p_n_p" ns="$(arg robot_name)" output="screen" launch-prefix="bash -c 'sleep $(arg start_delay_seconds); $0 $@' "/> -->
+    <node name="p_n_p_2" pkg="symphony_pnp" type="p_n_p"  output="screen" launch-prefix="bash -c 'sleep $(arg start_delay_seconds); $0 $@' "/>
+
+</launch>

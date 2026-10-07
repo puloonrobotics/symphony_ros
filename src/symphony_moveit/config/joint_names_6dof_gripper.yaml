@@ -1,0 +1,1 @@
+controller_joint_names: ['joint0', 'joint1', 'joint2', 'joint3', 'joint4', 'joint5','robotiq_85_left_finger_tip_joint','robotiq_85_left_inner_knuckle_joint','robotiq_85_left_knuckle_joint','robotiq_85_right_finger_tip_joint','robotiq_85_right_inner_knuckle_joint','robotiq_85_right_knuckle_joint']

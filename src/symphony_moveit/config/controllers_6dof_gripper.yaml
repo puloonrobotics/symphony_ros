@@ -1,0 +1,12 @@
+controller_list:
+  - name: "manipulator"
+    action_ns: joint_trajectory_action
+    type: FollowJointTrajectory
+    joints: [joint0, joint1, joint2, joint3, joint4, joint5]
+
+  - name: gripper
+    action_ns: joint_trajectory_action
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - robotiq_85_left_knuckle_joint

@@ -1,0 +1,40 @@
+<launch>
+  <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
+  <!-- <arg name="load_robot_description" default="false"/> -->
+
+  <!-- The name of the parameter under which the URDF is loaded -->
+  <arg name="robot_description" default="robot_description"/>
+  
+
+  <!-- Load universal robot description format (URDF) -->
+  <!-- <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="$(find xacro)/xacro.py '$(find symphony_description)/urdf/symphony7.xacro'"/> -->
+
+  <!-- The semantic description that corresponds to the URDF -->
+	<arg name="prefix" 		  default=""/>
+	<arg name="name" 		    default="symphony"/>
+  <arg name="symphony_type" 	default="symphony5"/>
+  <arg name="gripper" default="none"/>
+
+  <param name="$(arg robot_description)_semantic" command="$(find xacro)/xacro '$(find symphony_moveit)/config/symphony.srdf.xacro'
+		prefix:=$(arg prefix)
+		name:=$(arg name)
+		symphony_type:=$(arg symphony_type)
+    gripper:=$(arg gripper)"/>
+
+  <!-- Load updated joint limits (override information from URDF) -->
+  <group if="$(eval arg('symphony_type') == 'symphony5')" ns="$(arg robot_description)_planning">
+    <rosparam command="load" file="$(find symphony_moveit)/config/joint_limits_6dof.yaml"/>
+  </group>
+
+  #TODO
+  <group if="$(eval arg('gripper') == 'robotiq_2f' and arg('symphony_type') == 'symphony5')" ns="$(arg robot_description)_planning">
+    <rosparam file="$(find symphony_moveit)/config/joint_limits_6dof_gripper.yaml" command="load"/>
+  </group>
+
+
+  <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
+  <group ns="$(arg robot_description)_kinematics">
+    <rosparam command="load" file="$(find symphony_moveit)/config/kinematics.yaml"/>
+  </group>
+  
+</launch>

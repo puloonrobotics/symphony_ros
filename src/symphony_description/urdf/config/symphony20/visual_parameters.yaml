@@ -1,0 +1,50 @@
+mesh_files:
+  link0:
+    visual:
+      mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_0_w.dae"
+      #mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_0_w.dae"
+      material: ""
+    collision:
+      mesh: "package://symphony_description/meshes/symphony20/collision/symphony20_0_s.stl"
+  link1:
+    visual:
+      mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_1_w.dae"
+      #mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_1_w.dae"
+      material: ""
+    collision:
+      mesh: "package://symphony_description/meshes/symphony20/collision/symphony20_1_s.stl"
+  link2:
+    visual:
+      mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_2_w.dae"
+      #mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_2_w.dae"
+      material: ""
+    collision:
+      mesh: "package://symphony_description/meshes/symphony20/collision/symphony20_2_s.stl"
+  link3:
+    visual:
+      mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_3_w.dae"
+      #mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_3_w.dae"
+      material: ""
+    collision:
+      mesh: "package://symphony_description/meshes/symphony20/collision/symphony20_3_s.stl"
+  link4:
+    visual:
+      mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_4_w.dae"
+      #mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_4_w.dae"
+      material: ""
+    collision:
+      mesh: "package://symphony_description/meshes/symphony20/collision/symphony20_4_s.stl"
+  link5:
+    visual:
+      mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_5_w.dae"
+      #mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_5_w.dae"
+      material: ""
+    collision:
+      mesh: "package://symphony_description/meshes/symphony20/collision/symphony20_5_s.stl"
+  link6:
+    visual:
+      mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_6_w.dae"
+      #mesh: "package://symphony_description/meshes/symphony20/visual/symphony20_6_w.dae"
+      material: ""
+    collision:
+      mesh: "package://symphony_description/meshes/symphony20/collision/symphony20_6_s.stl"

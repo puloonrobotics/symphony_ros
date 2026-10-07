@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>symphony_description</name>
+  <version>1.0.0</version>
+  <description>The symphony_description package</description>
+  <maintainer email="sky9893@khu.ac.kr">Haneul Kim</maintainer>
+  
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

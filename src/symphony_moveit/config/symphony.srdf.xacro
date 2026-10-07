@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="$(arg name)">
+
+    <!-- robot name parameter -->
+    <xacro:arg name="name" default="symphony"/>
+    <!-- prefix -->
+    <xacro:arg name="prefix" default="" />
+    <!-- possible 'symphony_type' values: symphony5...-->
+    <xacro:arg name="symphony_type" default="symphony5"/>
+
+    <xacro:arg name="gripper" default="none"/>
+
+    <xacro:include filename="$(find symphony_moveit)/config/symphony_macro.srdf.xacro"/>
+
+    <!-- <xacro:symphony_srdf name="$(arg name)" prefix="$(arg prefix)" symphony_type="$(arg symphony_type)"/> -->
+    <xacro:symphony_srdf name="$(arg name)" prefix="$(arg prefix)" symphony_type="$(arg symphony_type)" gripper="$(arg gripper)"/>
+
+</robot>

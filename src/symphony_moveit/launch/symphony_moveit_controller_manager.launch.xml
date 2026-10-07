@@ -1,0 +1,19 @@
+<launch>
+	<arg name = "moveit_controller_manager" default = "moveit_simple_controller_manager/MoveItSimpleControllerManager" />
+	<param name = "moveit_controller_manager" value = "$(arg moveit_controller_manager)" />
+
+	<arg name="symphony_type" 	default="symphony5"/>
+	<arg name="sim_gazebo"  default="false"/>
+
+	<group if="$(eval arg('sim_gazebo') == false)">
+		<group if="$(eval arg('symphony_type') == 'symphony5')">
+			<rosparam file= "$(find symphony_moveit)/config/controllers_6dof.yaml" />
+		</group>
+	</group>
+	<group unless="$(eval arg('sim_gazebo') == false)">
+		<group if="$(eval arg('symphony_type') == 'symphony5')">
+			<rosparam file= "$(find symphony_moveit)/config/controllers_6dof_gazebo.yaml" />
+		</group>
+	</group>
+
+</launch>

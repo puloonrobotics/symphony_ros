@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <name>symphony_moveit</name>
+  <version>1.0.0</version>
+  <description>The symphony_moveit package</description>
+  <maintainer email="sky9893@khu.ac.kr">Haneul Kim</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>moveit_ros_move_group</run_depend>
+  <run_depend>moveit_fake_controller_manager</run_depend>
+  <run_depend>moveit_kinematics</run_depend>
+  <run_depend>moveit_planners_ompl</run_depend>
+  <run_depend>moveit_ros_visualization</run_depend>
+  <run_depend>joint_state_publisher</run_depend>
+  <run_depend>robot_state_publisher</run_depend>
+  <run_depend>symphony_description</run_depend>
+  <run_depend>xacro</run_depend>
+
+</package>

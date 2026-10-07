@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!--move group for gazebo-->
+	<arg name="prefix" 		  default=""/>
+	<arg name="name" 		    default="symphony"/>
+  <arg name="symphony_type" 	default="symphony5"/>
+  <arg name="gripper" default="none"/>
+  <arg name="sim_gazebo" default="false"/>
+
+  <!--gazebo-->
+  <include file="$(find symphony_moveit)/launch/fake_controller_manager.launch">
+    <arg name="symphony_type" value="$(arg symphony_type)"/>
+    <arg name="gripper" value="$(arg gripper)"/>
+    <arg name="gui" value="false"/>
+  </include>
+  <!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/> -->
+
+  <!--warehouse-->
+  <arg name="db" default="false" />
+  <arg name="db_path" default="$(find symphony_moveit)/default_warehouse_mongo_db" />
+  <include file="$(find symphony_moveit)/launch/default_warehouse_db.launch" if="$(arg db)">
+    <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
+  </include>
+
+  <include file="$(find symphony_moveit)/launch/move_group.launch" > 
+    <arg name="prefix" 		  value="$(arg prefix)"/>
+    <arg name="name" 		    value="$(arg name)"/>
+    <arg name="symphony_type" 	value="$(arg symphony_type)"/>
+    <arg name="sim_gazebo" 	default="true"/>
+    <arg name="gripper" value="$(arg gripper)"/>
+  </include>
+
+  <!--rviz-->
+  <include file="$(find symphony_moveit)/launch/moveit_rviz.launch">
+    <arg name="config" value="true"/>
+  </include>
+
+</launch>

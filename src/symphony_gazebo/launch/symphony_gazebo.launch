@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--ROBOT-->
+	<arg name="prefix" 		  default=""/>
+	<arg name="name" 		    default="symphony"/>
+  <arg name="symphony_type" 	default="symphony5"/>
+  <arg name="rviz" 	      default="false"/>
+  <!-- <arg name="gripper" default="none"> -->
+  <arg name="gripper" default="none"/>
+
+  <include file="$(find symphony_description)/launch/symphony_description.launch">
+    <arg name="prefix"      value="$(arg prefix)"/>
+    <arg name="name" 	      value="$(arg name)"/>
+    <arg name="symphony_type" 	value="$(arg symphony_type)"/>
+    <arg name="rviz" 		    value="$(arg rviz)"/>
+    <arg name="sim_gazebo"  default="true"/>
+    <arg name="joint_state" default="false"/>
+    <arg name="gripper" value="$(arg gripper)"/>
+  </include>
+
+  <!--GAZEBO-->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="worlds/empty.world"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <!-- Spawn a URDF robot -->
+  <arg name="robot_name"  default="/"/>
+  <arg name="x"           default="0.0"/>
+  <arg name="y"           default="0.0"/>
+  <arg name="z"           default="0.0"/>
+  <arg name="yaw"         default="0.0"/>
+  <!-- <arg name="tf_prefix"   default=""/> -->
+
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 
+    args="-urdf 
+          -param /robot_description 
+          -model $(arg robot_name) 
+          -x $(arg x)
+          -y $(arg y)
+          -z $(arg z)
+          -Y $(arg yaw)" />
+
+  <!-- Controller file -->
+  <group if="$(eval arg('symphony_type') == 'symphony5')">
+    <rosparam file="$(find symphony_gazebo)/controller/symphony_controller_6dof.yaml" command="load"/>
+  </group>
+
+  #TODO
+  <group if="$(eval arg('gripper') == 'robotiq_2f' and arg('symphony_type') == 'symphony5')">
+    <rosparam file="$(find symphony_gazebo)/controller/symphony_controller_6dof_gripper.yaml" command="load"/>
+  </group>
+
+  #TODO
+  <node if="$(eval arg('gripper') == 'none')" name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" 
+    args="joint_state_controller joint_trajectory_controller"/>
+
+  <node if="$(eval arg('gripper') != 'none')" name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" 
+    args="joint_state_controller joint_trajectory_controller
+    gripper_controller"/>
+  
+  <!-- for servoing -->
+  <node if="$(eval arg('gripper') == 'none')" name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" 
+      args="load joint_group_position_controller"/>
+  
+  <node if="$(eval arg('gripper') != 'none')" name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" 
+      args="load joint_group_position_controller robotiq_mimic_joint_controller"/>
+
+</launch>
