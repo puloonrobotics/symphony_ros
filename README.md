@@ -3,7 +3,7 @@
 
 ## Overview
 
-**Symphony** is a line of collaborative manipulators (cobots) developed by **Puloon Robotics Inc.**. These versatile robotic arms are designed for seamless integration into a wide range of industrial and research environments, offering safe and efficient automation solutions.
+**Symphony** is a line of collaborative manipulators (cobots) developed by **PULLON Robotics Inc.**. These versatile robotic arms are designed for seamless integration into a wide range of industrial and research environments, offering safe and efficient automation solutions.
 
 This ROS1 package provides essential drivers, interfaces, and control functionality for Symphony manipulators, allowing you to easily integrate them into existing ROS-based systems. Whether you are developing new applications, conducting research, or automating production lines, our package simplifies the process of getting your Symphony robot up and running in no time.
 
